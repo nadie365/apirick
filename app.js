@@ -10,7 +10,7 @@ const fetchData = async () => {
         const res = await fetch("https://rickandmortyapi.com/api/character");
         const data = await res.json();
 
-        // console.log(data.results)
+        console.log(data.results)
         pintarCard(data);
     } catch (error) {
         console.log(error)
@@ -23,7 +23,7 @@ const pintarCard = (data) => {
     const cards = document.getElementById('card-dinamicas');
     const templateCard = document.getElementById('template-card').content;
     const fragment = document.createDocumentFragment();
-    // console.log(data);
+    console.log(data);
 
     data.results.forEach((item) => {
         // console.log(item)
@@ -31,7 +31,9 @@ const pintarCard = (data) => {
         clone.querySelector("h5").textContent = item.name;
         clone.querySelector("p").textContent = item.species;
         clone.querySelector(".card-img-top").setAttribute("src",item.image)
-        
+        clone.querySelector("#gender").textContent = item.gender;
+        clone.querySelector("#status").textContent = item.status;
+
         // Guardamos en el fragment para evitar el reflow
         fragment.appendChild(clone);
     });
